@@ -1,0 +1,18 @@
+<p>ad-form works!</p>
+
+<nb-card>
+    <nb-card-body class="example-items-col">
+        <input type="text" nbInput fullWidth status="basic" placeholder="Title" [(ngModel)]="ad.title">
+
+      <nb-select placeholder="Select client" name="id_client" #id_client="ngModel"
+      [(ngModel)]="ad.id_client">
+      <nb-option *ngFor="let client of clients" value="{{client.id_client}}">{{client.full_name}}
+      </nb-option>
+  </nb-select>
+  <input nbInput (change)="handleFiles($event)" accept=".png,.jpg" class="form-control" type="file" id="formFile">
+    </nb-card-body>
+  </nb-card>
+
+<input type="button"  value="Send" name="send" class="btn btn-success" (click)="onSubmit()">
+
+

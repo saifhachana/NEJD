@@ -1,0 +1,108 @@
+<nb-card size="larg">
+    <nb-card-body>
+        <form #updateForm="ngForm" #taskNewForm="ngForm" (ngSubmit)="onSubmit();">
+
+            <nb-stepper orientation="horizontal">
+
+
+                <nb-step [label]="labelOne">
+                    <ng-template #labelOne>First step</ng-template>
+                    <h4>Select Client</h4>
+
+
+                    <nb-select placeholder="Select client" name="id_client" #id_client="ngModel"
+                        [(ngModel)]="contract.client.id_client">
+                        <nb-option *ngFor="let client of clients" value="{{client.id_client}}">{{client.full_name}}
+                        </nb-option>
+                    </nb-select>
+                    <br>
+                    <button nbButton disabled nbStepperNext>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+
+
+                <nb-step [label]="labelTwo">
+                    <ng-template #labelTwo>Second step</ng-template>
+                    <h4>Select companie</h4>
+
+
+                    <nb-select placeholder="Select companie" name="id_companie" #id_companie="ngModel"
+                        [(ngModel)]="contract.companie.id_companie">
+                        <nb-option *ngFor="let companie of companies" value="{{companie.id_companie}}">
+                            {{companie.full_name}}
+                        </nb-option>
+                    </nb-select>
+
+                    <br>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+
+                <nb-step label="Third step">
+                    <h4>Select your AD</h4>
+
+
+                    <nb-select placeholder="Select Your AD" name="id_ad" #id_ad="ngModel" [(ngModel)]="contract.ad.id_ad">
+                        <nb-option *ngFor="let ad of ads" value="{{ad.id_ad}}">{{ad.title}}</nb-option>
+                    </nb-select>
+
+                    <br>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+
+                <nb-step [label]="labelFour">
+                    <ng-template #labelFour>Fourth step</ng-template>
+                    <h4>Select days per week</h4>
+
+                    <nb-radio-group name="days" #days="ngModel" [(ngModel)]="contract.days">
+                        <nb-radio *ngFor="let option of options" [value]="option.value">
+                            {{ option.label }}
+                        </nb-radio>
+                    </nb-radio-group>
+                    <br>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+
+                <nb-step [label]="labelFive">
+                    <ng-template #labelFive>Fifth step</ng-template>
+                    <h4>Select show ad in a day</h4>
+
+                    <nb-card-body class="example-items-rows">
+                        <input type="number" nbInput min="1" max="10" name="loop" #loop="ngModel"
+                            [(ngModel)]="contract.loop">
+                    </nb-card-body>
+                    <br>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton nbStepperNext>next</button>
+                </nb-step>
+
+
+                <nb-step [label]="labelSix">
+                    <ng-template #labelSix>Final step</ng-template>
+                    <h4>Select periode</h4>
+
+                    <input nbInput placeholder="Starting Date" [nbDatepicker]="dateTimePicker" name="start_date"
+                        #start_date="ngModel" [(ngModel)]="contract.start_date">
+                    <nb-datepicker [min]="min" [max]="max" #dateTimePicker></nb-datepicker>
+
+                    <input nbInput placeholder="Ending Date" [nbDatepicker]="dateTimePicker2" name="end_date"
+                        #end_date="ngModel" [(ngModel)]="contract.end_date">
+                    <nb-datepicker [min]="min" [max]="max" #dateTimePicker2></nb-datepicker>
+
+<br>
+                    <button nbButton nbStepperPrevious>prev</button>
+                    <button nbButton type="submit" value="Send" name="send">Send</button>
+                </nb-step>
+
+            </nb-stepper>
+
+
+        </form>
+    </nb-card-body>
+</nb-card>
